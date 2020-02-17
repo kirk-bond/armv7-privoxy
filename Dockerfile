@@ -7,7 +7,7 @@ FROM arm32v7/alpine
 MAINTAINER kirk
 
 RUN set -xe \
-    && apk add -U curl privoxy \
+    && apk add -U curl privoxy su-exe\
     && apk del curl \
     && rm -rf /var/cache/apk/*
 
@@ -20,4 +20,4 @@ VOLUME /etc/privoxy
 
 EXPOSE 8118
 
-CMD sudo -u privoxy privoxy --no-daemon /etc/privoxy/config
+CMD su-exec privoxy privoxy --no-daemon /etc/privoxy/config
